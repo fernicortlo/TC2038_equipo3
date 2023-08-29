@@ -129,14 +129,32 @@ int kruskal(std::vector<vertix> list, int num_nodes, int edges)
     int sum = 0, num_edges = 0, pos1, pos2, added, cycle;
     std::vector<node> nodes;
 
+    //Fill nodes list with empty values
+    for (int i=0; i < list.size(); i++)
+        nodes.push_back({i, 0, std::vector<int>()});
+
     for(int i=0; i < list.size(); i++)
     {
         if (num_edges == num_nodes-1)
             break;
-        pos1 = find_node(nodes, list[i].first);
-        pos2 = find_node(nodes, list[i].second);
+        //pos1 = find_node(nodes, list[i].first);
+        //pos2 = find_node(nodes, list[i].second);
 
         added = 0;
+
+        clear_exploration(&nodes);
+        cycle = 0;
+        is_connected(&nodes, &nodes[list[i].first], list[i].second, &cycle);
+        if (!cycle)
+        {
+            sum+=list[i].weight;
+            num_edges++;
+            printf("%d <-> %d with weight %d\n", list[i].first, list[i].second, list[i].weight);
+            nodes[list[i].first].connected.push_back(list[i].second);
+            nodes[list[i].second].connected.push_back(list[i].first);
+        }
+
+/*
         //Add nodes if not already in vector
         if (pos1 == -1)
         {
@@ -192,6 +210,7 @@ int kruskal(std::vector<vertix> list, int num_nodes, int edges)
                 nodes[pos2].connected.push_back(list[i].first);
             }
         }
+*/
         //print_nodes(nodes);
     }
     //print_nodes(nodes);
