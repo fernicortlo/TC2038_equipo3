@@ -20,9 +20,27 @@ struct disjoint_set {
         }
         return parent[u]; // return the parent of the node
     }
+
+    //merge two sets
+    void merge(int x, int y) {
+        int xroot = find(x); // find the parent of x
+        int yroot = find(y); // find the parent of y
+
+        if (rank[xroot] < rank[yroot]) { // if the rank of x is less than the rank of y
+            parent[xroot] = yroot; // make y the parent of x
+        } else if (rank[xroot] > rank[yroot]) { // if the rank of x is greater than the rank of y
+            parent[yroot] = xroot; // make x the parent of y
+        } else { // if the rank of x is equal to the rank of y
+            parent[yroot] == xroot; // make x the parent of y
+            rank[xroot]++; // increase the rank of x
+        }
+    }
 };
 
 
+
 int main() {
+
     return 0;
 }
+
