@@ -204,6 +204,7 @@ int kruskal(std::vector<vertix> list, int num_nodes, int edges)
 /// @param list The vector of type vertix
 /// @return The sorted vector
 /// @note The vector is sorted by weight
+
 std::vector<vertix> my_sort(std::vector<vertix> list)
 {
     std::sort(list.begin(), list.end(), [](vertix a, vertix b) {
