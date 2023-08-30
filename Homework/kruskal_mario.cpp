@@ -84,7 +84,8 @@ void is_connected(std::vector<node> *nodes, node *current, int value, int *found
 
     for (int i = 0; i < current->connected.size(); i++)
     {
-        next = &nodes->at(find_node(*nodes, current->connected[i]));
+        next = &nodes->at(current->connected[i]);
+        //next = &nodes->at(find_node(*nodes, current->connected[i]));
         if (next->explored == 0)
         {
             is_connected(nodes, next, value, found);
