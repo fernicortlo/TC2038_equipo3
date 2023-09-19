@@ -26,6 +26,12 @@ int *z_function(char *pattern)
 
 int main(int argc, char **argv)
 {
+    if (argc!= 3)
+    {
+        printf("Usage: %s <pattern> <main>\n", argv[0]);
+        return 1;
+    }
+
     char *pattern = argv[1];
     char *main = argv[2];
     char *final = (char *)malloc(sizeof(char) * (strlen(pattern) + strlen(main) + 1));
@@ -41,13 +47,13 @@ int main(int argc, char **argv)
     for (int i = 0; i < strlen(final); i++)
     {
         if (z[i] == strlen(pattern))
-            found.push_back(i);
+            found.push_back(i - strlen(pattern) - 1);
         printf("%d ", z[i]);
     }
     printf("\n");
 
     for (int i: found)
-        printf("The pattern is found in position %d\n", i);
+        printf("The pattern is found in position %d %s\n", i, &main[i]);
 
     free(z);
     free(final);
