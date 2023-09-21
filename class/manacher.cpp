@@ -47,15 +47,17 @@ int main(int argc, char **argv)
 
     int *l = manacher(new_string, &biggest);
     char *position;
+    int done = 0;
 
     for (int i = 0; i < strlen(new_string); i++)
     {
         printf("%d ", l[i]);
-        if (l[i] == biggest)
+        if (l[i] == biggest && !done)
         {
-            printf("\n%d %d\n", i, biggest);
+            //printf("\n%d %d\n", i, biggest);
             position = &main[(i - biggest) / 2];
             position[biggest] = '\0';
+            done = 1;
         }
     }
 
