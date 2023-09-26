@@ -22,9 +22,9 @@ unsigned long hash(char *str)
     for (int i = 0; i < strlen(str); i++)
     {
         //ASCII
-        value += (str[i] * my_pow(P, i)) % M;
-        //A = 1
         //value += (str[i] * my_pow(P, i)) % M;
+        //A = 1
+        value += ((str[i] - 96) * my_pow(P, i)) % M;
     }
     return (value % M);
 }
