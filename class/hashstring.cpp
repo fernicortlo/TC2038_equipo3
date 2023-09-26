@@ -21,7 +21,10 @@ unsigned long hash(char *str)
     unsigned long value = 0;
     for (int i = 0; i < strlen(str); i++)
     {
+        //ASCII
         value += (str[i] * my_pow(P, i)) % M;
+        //A = 1
+        //value += (str[i] * my_pow(P, i)) % M;
     }
     return (value % M);
 }
