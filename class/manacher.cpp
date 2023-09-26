@@ -62,6 +62,8 @@ int main(int argc, char **argv)
     }
 
     printf("\nThe biggest palindrome is %s of size %d\n", position, biggest);
+    free(l);
+    free(new_string);
 
     return 0;
 }
