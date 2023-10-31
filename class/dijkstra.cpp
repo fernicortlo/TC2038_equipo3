@@ -3,6 +3,7 @@
 #include <vector>
 #include <queue>
 #include <limits>
+#include <fstream>
 
 using namespace std;
 
@@ -51,12 +52,32 @@ void dijkstra(const vector<vector<pii>>& graph, int source) {
         cout << i << "\t\t" << ((dist[i] == INF) ? "INF" : to_string(dist[i])) << endl;
 }
 
-int main() {
+int main(int argc, char **argv) {
+    if (argc != 2)
+    {
+        printf("Usage: %s %s\n", argv[0], argv[1]);
+        return 1;
+    }
+    std::ifstream file(argv[1]);
     // Number of vertices.
-    int V = 5;
+    int V;
+    // Name of origin vertex
+    int origin;
+
+    //Read the file
+    int a, b, c;
+    file >> V >> origin;
     // Graph is represented as an adjacency list of (node, weight).
     vector<vector<pii>> graph(V, vector<pii>());
+    while (file >> a >> b >> c)
+    {
+        graph[a].push_back(make_pair(b, c));
+        //Print unsorted as reading
+        //printf("%d <-> %d with weight %d\n", a, b, c);
+    }   
+    file.close();
 
+    /*
     // Add edges.
     graph[0].push_back(make_pair(1, 3)); // Edge: 0 - 1, weight: 3
     graph[0].push_back(make_pair(3, 8));
@@ -66,9 +87,10 @@ int main() {
     graph[3].push_back(make_pair(0, 8));
     graph[3].push_back(make_pair(4, 3));
     graph[4].push_back(make_pair(0, 7));
+    */
 
     // Starting Dijkstra's algorithm from vertex 0.
-    dijkstra(graph, 0);
+    dijkstra(graph, origin);
 
     return 0;
 }
