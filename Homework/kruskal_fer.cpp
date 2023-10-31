@@ -7,7 +7,7 @@
 // 1 2 3 (node1 node2 weight)
 // And the output will be:
 // The used connections and their final weight
-
+#include <vector>
 #include <iostream>
 #include <algorithm> // to use sort
 #include <fstream> // to read the file
