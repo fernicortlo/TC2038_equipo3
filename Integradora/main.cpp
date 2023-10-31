@@ -20,7 +20,6 @@ static std::string read_file(const char *name)
 
 static void part1(std::vector <std::string> t, std::vector <std::string> m)
 {
-    printf("Parte 1:\n");
     int find_pos;
 
     for (int i = 0; i < 2; i++)
@@ -38,7 +37,6 @@ static void part1(std::vector <std::string> t, std::vector <std::string> m)
 
 static void part2(std::vector <std::string> t)
 {
-    printf("Parte 2:\n");
     int find_pos;
 
     for (int i = 0; i < 2; i++)
@@ -51,7 +49,7 @@ static void part2(std::vector <std::string> t)
 
 
 static void part3(const std::vector<std::string>& t, const std::vector<std::string>& m) {
-    printf("Parte 3:\n");
+    /*
     for (int i = 0; i < t.size(); ++i) {
         for (int j = 0; j < m.size(); ++j) {
             auto result = longest_common_substring(t[i], m[j]);
@@ -67,6 +65,10 @@ static void part3(const std::vector<std::string>& t, const std::vector<std::stri
             }
         }
     }
+    */
+    LCS_Result result = longest_common_substring(t[0], t[1]);
+    printf("%d %d\n", result.start_index, result.end_index);
+    //printf("%s\n", &t[0][result.start_index]);
 }
 
 
@@ -81,8 +83,11 @@ int main()
     m.push_back(read_file("mcode2.txt"));
     m.push_back(read_file("mcode3.txt"));
 
+    printf("Parte 1:\n");
     part1(t, m);
+    printf("Parte 2:\n");
     part2(t);
+    printf("Parte 3:\n");
     part3(t, m);
 
     return 1;
