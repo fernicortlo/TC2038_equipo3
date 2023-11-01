@@ -65,8 +65,8 @@ vector<int> prefix_function(string &pattern){ //** Creamo una funcion que devuel
 }
 
 int kmp_function(string &transmission, string &pattern, vector<int> &prefix ){
-    int i,j = 0; //** Inicializamos nuestro indices (uno para el patron y otro para la transmision)
-    for(i; i<transmission.length(); i++){ //** Recorremos el archivo o mensaje de transmision
+    int j = 0; //** Inicializamos nuestro indices (uno para el patron y otro para la transmision)
+    for(int i = 0; i<transmission.length(); i++){ //** Recorremos el archivo o mensaje de transmision
         if(pattern[j]=='\0'){ //** Si recorremos el patron completo, significa que esta dentro del mensaje
             return ((i+1)-pattern.length()); //** Regresamos la posicion final del indice de transmision
         }
