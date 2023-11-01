@@ -20,6 +20,24 @@ using namespace std; //** Usamos el bloque de codigo o region de std
  * ellas.
  */
 
+static std::string read_file(const char *name)
+{
+    std::ifstream file(name);
+    std::string str, tmp;
+
+    while (file >> tmp)
+    {
+        //If character is endline add it to string, to not lose it
+        if (file.peek() == '\n')
+            str = str + tmp + '\n';
+        else
+            str = str + tmp;
+    }
+
+    file.close();
+    return str;
+}
+
 static void part1(std::vector <std::string> t, std::vector <std::string> m)
 {
     int identificar;
@@ -35,7 +53,7 @@ static void part1(std::vector <std::string> t, std::vector <std::string> m)
                 cout << "false" << endl;
             }
             else{
-                cout << "true " << "el archivo de transmision" << i+1 << " contiene el codigo mcode" << j+1 << " en la posicion " << identificar << endl;
+                cout << "true " << identificar << endl;
             }
         }
     }
@@ -69,11 +87,11 @@ int main(){
 
     //** Archivos
 
-    t.push_back(lectura_txt("transmission1.txt"));
-    t.push_back(lectura_txt("transmission2.txt"));
-    m.push_back(lectura_txt("mcode1.txt"));
-    m.push_back(lectura_txt("mcode2.txt"));
-    m.push_back(lectura_txt("mcode3.txt"));
+    t.push_back(read_file("transmission1.txt"));
+    t.push_back(read_file("transmission2.txt"));
+    m.push_back(read_file("mcode1.txt"));
+    m.push_back(read_file("mcode2.txt"));
+    m.push_back(read_file("mcode3.txt"));
 
     //** Ejecucion de la parte 1
 
