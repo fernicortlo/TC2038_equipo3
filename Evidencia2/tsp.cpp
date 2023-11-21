@@ -1,8 +1,4 @@
-#include <vector>
-#include <stdio.h>
-#include <fstream>
-#include <sstream>
-#include <climits>
+#include "evidencia2.hpp"
 
 //Lower bound
 int minCost(int current_node, std::vector<int> matrix, std::vector<bool> visited)
@@ -78,7 +74,8 @@ int tsp_solve(int size, std::vector<int> matrix)
     return 1;
 }
 
-int main(int argc, char **argv)
+/*
+int read(int argc, char **argv)
 {
     if (argc != 2)
     {
@@ -122,3 +119,4 @@ int main(int argc, char **argv)
     tsp_solve(size, matrix);
     return 0;
 }
+*/

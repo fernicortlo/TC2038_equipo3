@@ -1,20 +1,11 @@
-#include <cstdio>
-#include <cmath>
-#include <vector>
-#include <fstream>
-#include <algorithm>
-#include <climits>
+#include "evidencia2.hpp"
 
-struct Point{
-    double x, y;
-};
-
-double euclidean(Point A, Point B)
+static double euclidean(Point A, Point B)
 {
     return sqrt((A.x - B.x) * (A.x - B.x) + (A.y - B.y) * (A.y - B.y));
 }
 
-static std::vector<Point> sort_points_x(std::vector<Point> list)
+std::vector<Point> sort_points_x(std::vector<Point> list)
 {
     std::sort(list.begin(), list.end(), [](Point a, Point b) {
         return a.x < b.x;});
@@ -28,7 +19,7 @@ static std::vector<Point> sort_points_y(std::vector<Point> list)
     return list;
 }
 
-static double find_minimum(std::vector<Point> points)
+double find_minimum(std::vector<Point> points)
 {
     //La distancia si solo hay 1 punto es infinita
     if (points.size() == 1)
@@ -65,6 +56,7 @@ static double find_minimum(std::vector<Point> points)
     return d;
 }
 
+/*
 int main(int argc, char **argv)
 {
     if (argc != 2)
@@ -90,3 +82,4 @@ int main(int argc, char **argv)
 
     return 0;
 }
+*/
