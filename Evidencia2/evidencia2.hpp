@@ -30,6 +30,3 @@ void kruskal(const std::string& filename);
 
 // geometry
 double findNearestServerDistance(const Point& currentPoint, const std::vector<Point>& points);
-
-
-void displayResults(const std::vector<Edge>& mst, const std::vector<int>& tspPath, const std::vector<double>& nearestServerDistances);
