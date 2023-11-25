@@ -56,6 +56,19 @@ double find_minimum(std::vector<Point> points)
     return d;
 }
 
+double findNearestServerDistance(const Point& point, const std::vector<Point>& points) {
+    double minDistance = std::numeric_limits<double>::max();
+    for (const auto& p : points) {
+        if (!(p.x == point.x && p.y == point.y)) {  // Ensure it's not the same point
+            double distance = euclidean(point, p);
+            if (distance < minDistance) {
+                minDistance = distance;
+            }
+        }
+    }
+    return minDistance;
+}
+
 /*
 int main(int argc, char **argv)
 {
