@@ -56,43 +56,18 @@ double find_minimum(std::vector<Point> points)
     return d;
 }
 
-double findNearestServerDistance(const Point& point, const std::vector<Point>& points) {
+double findNearestServerDistance(const Point& point, const std::vector<Point>& points, std::vector<Point>& closest) {
     double minDistance = std::numeric_limits<double>::max();
+    Point closest_point = Point();
     for (const auto& p : points) {
         if (!(p.x == point.x && p.y == point.y)) {  // Ensure it's not the same point
             double distance = euclidean(point, p);
             if (distance < minDistance) {
                 minDistance = distance;
+                closest_point = p;
             }
         }
     }
+    closest.push_back(closest_point);
     return minDistance;
 }
-
-/*
-int main(int argc, char **argv)
-{
-    if (argc != 2)
-    {
-        printf("Usage: %s %s\n", argv[0], argv[1]);
-        return 1;
-    }
-
-    std::ifstream file(argv[1]);
-    std::vector<Point>  points;
-
-    Point p;
-    while (file >> p.x >> p.y)
-        points.push_back(p);
-    file.close();
-
-    //Sort the points by its x component
-    points = sort_points_x(points);
-
-    int min = find_minimum(points);
-
-    printf("The minimum distance is %d\n", min);
-
-    return 0;
-}
-*/

@@ -92,7 +92,6 @@ int tsp_solve(int size, const std::vector<std::vector<int>>& matrix, std::vector
     path[size] = 0;
     find_path(0, 1, 0, minimum, matrix, path, visited, tspPath);
 
-    printf("\nCost: %d\n", minimum);
     return minimum; // Return the minimum cost
 }
 
@@ -184,8 +183,9 @@ int main(int argc, char **argv)
 
         // Calculate nearest server distance for each point
         std::vector<double> nearestServerDistances;
+        std::vector<Point> closest;
         for (const Point& point : points) {
-            double distance = findNearestServerDistance(point, points);
+            double distance = findNearestServerDistance(point, points, closest);
             nearestServerDistances.push_back(distance);
         }
 
@@ -211,13 +211,15 @@ int main(int argc, char **argv)
         std::cout << "2. Ruta a seguir por el personal que reparte correspondencia:\n";
         for (size_t i = 0; i < tspPath.size(); ++i) {
             char colonyName = 'A' + tspPath[i];
-            std::cout << colonyName << (i < tspPath.size() - 1 ? " -> " : " -> ") << colonyName;
+            printf("%c -> ", colonyName);
+            //std::cout << colonyName << (i < tspPath.size() - 1 ? " -> " : " -> ") << colonyName;
         }
-        std::cout << "\n\n";
+        printf("A\nCost: %d\n\n", tspCost);
 
         //Print nearest server distances
         for (size_t i = 0; i < nearestServerDistances.size(); ++i) {
-            std::cout << "3. Servidor más cercano al punto " << i << ": " << nearestServerDistances[i] << std::endl;
+            printf("3. Servidor más cercano al punto (%.1f, %.1f): (%.1f, %.1f). Distancia: %f\n", points[i].x, points[i].y, closest[i].x, closest[i].y, nearestServerDistances[i]);
+            //std::cout << "3. Servidor más cercano al punto " << i << ": " << nearestServerDistances[i] << std::endl;
         }
     }
     else {
